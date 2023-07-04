@@ -1,15 +1,18 @@
-import { useState } from 'react'
 import RegistrarBtn from './components/RegistrarBtn'
 import MostrarDatos from './components/MostrarDatos'
+import { useEffect } from 'react'
 
 function App() {
 
   const DateTime = new Date()
-
+  let fecha = DateTime.toLocaleString('es-mx', { weekday:"long", year:"numeric", month:"long", day:'numeric'})
+  
   return (
     <>
-      <h3>{DateTime.toDateString()} - Registro de Asistencias</h3>
-      <hr />
+      <hgroup>
+  <h2>Registro de Asistencia</h2>
+  <h3>{fecha}</h3>
+</hgroup>
       <RegistrarBtn />
       <MostrarDatos />
     </>

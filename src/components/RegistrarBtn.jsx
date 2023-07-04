@@ -5,41 +5,37 @@ export default function RegistrarBtn(){
     const DateTime = new Date()
 
     const date = DateTime.getFullYear() +'-'+ (DateTime.getMonth()+1) +'-'+ DateTime.getDate()
+
     const hour = DateTime.getHours()
     const min = DateTime.getMinutes()
-    // const hour = 8
-    // const min = 12
     const time = hour +':'+ min
 
+    // const hour = 8
+    // const min = 13
+
     const checkIn = ()=>{
-        const setRegistro = {
+        const setReg = {
             date: date,
-            in: hour+':'+min,
-            out:''
+            in: time
         }
-        addRegistro(setRegistro)
+        addRegistro(setReg)
     }
 
     const CheckOut = async ()=>{
-        // const setRegistro = {
-        //     date: year+'-'+mon+'-'+day,
-        //     in: hour+':'+min,
-        //     out:''
-        // }
-        updateRegistro(time)
+        const setReg = {
+            date: date,
+            out: time
+        }
+        updateRegistro(setReg)
     }
 
     if(hour == 8 && (min >= 0 && min <= 30)){
-        return <button onClick={checkIn}>Registrar Entrada</button>
+        return <button onClick={checkIn} type="button">Registrar Entrada</button>
     }
 
     if((hour ==15 || hour ==16) && (min >= 30 && min <= 59)){
-        return <button onClick={CheckOut}>Registrar Salida</button>
+        return <button onClick={CheckOut} type="button">Registrar Salida</button>
     }
 
-    return(
-        <>
-            <button>Espere su horario de Registro</button>
-        </>
-    )
+    return <button type="button">Espere su horario de Registro</button>
 }
