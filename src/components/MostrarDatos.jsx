@@ -36,7 +36,7 @@ export default function MostrarDatos() {
                         lista.map(el => (
                             <tr key={el.id}>
                                 <td>{el.date}</td>
-                                <td>{el.in}</td>
+                                <td>{el.in ? el.in : 'Sin registro'}</td>
                                 <td>{el.out}</td>
                             </tr>
                         ))

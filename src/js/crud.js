@@ -47,8 +47,10 @@ const updateRegistro = async (setReg) => {
     info.map(el => {
         if (el.date == setReg.date) {
             change = el.id  // Busca si ya se encuentra un registro con la misma fecha
-        } else {
-            return 'Ya esta registrada tu salida!'
+        } 
+        if(el.date == setReg.date && el.out) {
+            console.log('Ya esta registrada tu salida!')
+            return 
         }
     })
 
@@ -56,6 +58,13 @@ const updateRegistro = async (setReg) => {
         try {
             const dataRef = doc(db, coleccion, change)
             await updateDoc(dataRef, { out: setReg.out })
+        } catch (error) {
+            console.log(error)
+        }
+    }else{
+        try {
+            const docRef = await addDoc(collection(db, coleccion), setReg)
+            console.log('Registro exitoso con id:', docRef.id)
         } catch (error) {
             console.log(error)
         }

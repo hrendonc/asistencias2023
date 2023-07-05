@@ -6,12 +6,13 @@ export default function RegistrarBtn(){
 
     const date = DateTime.getFullYear() +'-'+ (DateTime.getMonth()+1) +'-'+ DateTime.getDate()
 
-    const hour = DateTime.getHours()
-    const min = DateTime.getMinutes()
+    // const hour = DateTime.getHours()
+    // const min = DateTime.getMinutes()
+    const hour = 15
+    const min = 37
     const time = hour +':'+ min
 
-    // const hour = 8
-    // const min = 13
+    
 
     const checkIn = ()=>{
         const setReg = {
