@@ -37,7 +37,7 @@ export default function MostrarDatos() {
                             <tr key={el.id}>
                                 <td>{el.date}</td>
                                 <td>{el.in ? el.in : 'Sin registro'}</td>
-                                <td>{el.out}</td>
+                                <td>{el.out ? el.out : 'Sin registro'}</td>
                             </tr>
                         ))
                     }

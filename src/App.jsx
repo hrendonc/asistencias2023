@@ -1,6 +1,5 @@
 import RegistrarBtn from './components/RegistrarBtn'
 import MostrarDatos from './components/MostrarDatos'
-import { useEffect } from 'react'
 
 function App() {
 
