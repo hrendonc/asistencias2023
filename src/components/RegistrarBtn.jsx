@@ -4,13 +4,13 @@ export default function RegistrarBtn(){
 
     const DateTime = new Date()
 
-    // const date = DateTime.getFullYear() +'-'+ (DateTime.getMonth()+1) +'-'+ DateTime.getDate()
-    const date = '2023-7-6'
+    const date = DateTime.getFullYear() +'-'+ (DateTime.getMonth()+1) +'-'+ DateTime.getDate()
+    // const date = '2023-7-6'
 
-    // const hour = DateTime.getHours()
-    // const min = DateTime.getMinutes()
-    const hour = 15
-    const min = 33
+    const hour = DateTime.getHours()
+    const min = DateTime.getMinutes()
+    // const hour = 15
+    // const min = 37
     const time = hour +':'+ min
 
     
