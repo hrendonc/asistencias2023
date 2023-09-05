@@ -10,7 +10,6 @@ var notyf = new Notyf({position: {
     y: 'top',
   }});
 
-
 const addRegistro = async (setReg) => {
 
     let exit = false
