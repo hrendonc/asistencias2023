@@ -19,7 +19,7 @@ export default function RegistrarBtn(){
     const hour = DateTime.getHours()
     const min = DateTime.getMinutes()
     // const hour = 15
-    // const min = 31
+    // const min = 34
     const time = hour +':'+ min
 
 
@@ -56,7 +56,7 @@ export default function RegistrarBtn(){
 
     if((hour ==15 || hour ==16) && (min >= 30 && min <= 59)){
         return (
-            <form onSubmit={checkIn}>
+            <form onSubmit={CheckOut}>
                 <input type="number" name="number" onChange={e=>setNumReg(e.target.value)} placeholder="Número de registro?"/>
                 <button type="submit">Registrar Salida</button>
             </form>
