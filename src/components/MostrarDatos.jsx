@@ -14,6 +14,7 @@ export default function MostrarDatos() {
                 snapshot.docs.forEach(doc => {
                     data.push({ ...doc.data(), id: doc.id })
                 })
+                data.sort((x, y) => y.date.localeCompare(x.date))
                 setLista(data)
             })
         }

@@ -13,8 +13,12 @@ export default function RegistrarBtn(){
 
     const [numReg, setNumReg] = useState(0)
 
-    const date = DateTime.getFullYear() +'-'+ (DateTime.getMonth()+1) +'-'+ DateTime.getDate()
-    // const date = '2023-7-6'
+    let year = DateTime.getFullYear()
+    let month = (DateTime.getMonth()+1) < 10 ? '0'+(DateTime.getMonth()+1) : (DateTime.getMonth()+1)
+    let day = DateTime.getDate() < 10 ? '0'+DateTime.getDate() : DateTime.getDate()
+    // const date = '2023-07-06'
+    const date = year + '-' + month + '-' + day 
+
 
     const hour = DateTime.getHours()
     const min = DateTime.getMinutes()
@@ -30,7 +34,7 @@ export default function RegistrarBtn(){
             date,
             in: time
         }
-        numReg > 0 ? addRegistro(setReg) : notyf.success('Debe introducir un número de registro')
+        numReg > 0 ? addRegistro(setReg) : notyf.error('Debe introducir un número de registro')
     }
 
     const CheckOut = (e)=>{
@@ -40,7 +44,7 @@ export default function RegistrarBtn(){
             date,
             out: time
         }
-        numReg > 0 ? updateRegistro(setReg) : notyf.success('Debe introducir un número de registro')
+        numReg > 0 ? updateRegistro(setReg) : notyf.error('Debe introducir un número de registro')
         
     }
 

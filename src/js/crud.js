@@ -18,7 +18,7 @@ const addRegistro = async (setReg) => {
     info.map(el => {
         if (el.date == setReg.date) {  // Busca si ya se encuentra un registro con la misma fecha
             exit = true            
-            notyf.success('Su entrada ya se encuentra registrada!');
+            notyf.warning('Su entrada ya se encuentra registrada!');
             return
         }
     })
@@ -62,7 +62,7 @@ const updateRegistro = async (setReg) => {
     })
 
     if(existe){
-        notyf.success('Ya esta registrada tu salida!')
+        notyf.warning('Ya esta registrada tu salida!')
             return 
     }
 
