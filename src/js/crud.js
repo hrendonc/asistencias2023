@@ -1,14 +1,26 @@
-import { db } from "./firebase";
-import { collection, addDoc, getDocs } from "firebase/firestore";
-import { doc, updateDoc } from "firebase/firestore";
+import { db } from "./firebase"
+import { collection, addDoc, getDocs } from "firebase/firestore"
+import { doc, updateDoc } from "firebase/firestore"
+
+import { Notyf } from "notyf"
+import 'notyf/notyf.min.css'
 
 const coleccion = 'asistencias'
 
-  // Create an instance of Notyf
-var notyf = new Notyf({position: {
-    x: 'right',
-    y: 'top',
-  }});
+// Notificaciones
+var notyf = new Notyf(
+    {        
+        position: {
+            x: 'right',
+            y: 'top'
+        },
+        types: [{
+            type: 'warning',
+            background: 'orange',
+            duration:3000,
+            dismissible: true
+        }]      
+    })
 
 const addRegistro = async (setReg) => {
 
@@ -17,8 +29,11 @@ const addRegistro = async (setReg) => {
 
     info.map(el => {
         if (el.date == setReg.date) {  // Busca si ya se encuentra un registro con la misma fecha
-            exit = true            
-            notyf.warning('Su entrada ya se encuentra registrada!');
+            exit = true
+            notyf.open({
+                type: 'warning',
+                message: 'Su entrada <strong>ya</strong> se encuentra registrada!'
+              })                
             return
         }
     })
@@ -74,7 +89,7 @@ const updateRegistro = async (setReg) => {
         } catch (error) {
             notyf.error(error)
         }
-    }else{
+    }else{ //Si no registro entrada, registra la salida omitiendo la entrada
         try {
             const docRef = await addDoc(collection(db, coleccion), setReg)
             notyf.success('Se registró tu salida exitosamente')
