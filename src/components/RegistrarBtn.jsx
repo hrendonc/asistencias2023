@@ -4,7 +4,6 @@ import { addRegistro, updateRegistro } from "../js/crud"
 import { Notyf } from "notyf"
 import 'notyf/notyf.min.css'
 
-
 // Notificaciones
 var notyf = new Notyf(
     {
@@ -14,11 +13,12 @@ var notyf = new Notyf(
         }
     });
 
-export default function RegistrarBtn(){
+export default function RegistrarBtn({user}){
 
     const DateTime = new Date()
 
     const [numReg, setNumReg] = useState(0)
+    const [regOK, setRegOK] = useState(false)
 
     let year = DateTime.getFullYear()
     let month = (DateTime.getMonth()+1) < 10 ? '0'+(DateTime.getMonth()+1) : (DateTime.getMonth()+1)
@@ -37,9 +37,11 @@ export default function RegistrarBtn(){
         const setReg = {
             numReg,
             date,
-            in: time
+            in: time,
+            user: user.displayName
         }
         numReg > 0 ? addRegistro(setReg) : notyf.error('Debe introducir un número de registro')
+        setRegOK(true)
     }
 
     const CheckOut = (e)=>{
@@ -47,9 +49,11 @@ export default function RegistrarBtn(){
         const setReg = {
             numReg,
             date,
-            out: time
+            out: time,
+            user: user.displayName
         }
         numReg > 0 ? updateRegistro(setReg) : notyf.error('Debe introducir un número de registro') 
+        setRegOK(true)
     }
 
     if((hour == 7 && (min >= 30 && min <= 59)) || (hour == 8 && (min >= 0 && min <= 30)) ){
@@ -70,5 +74,5 @@ export default function RegistrarBtn(){
         )
     }
 
-    return <button type="button" disabled>Espere su horario de Registro</button>
+    return regOK ? <button type="button" disabled>Registro realizado</button> : <button type="button" disabled>Espere su horario de Registro</button>
 }
