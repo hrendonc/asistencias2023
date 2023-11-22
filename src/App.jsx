@@ -31,10 +31,14 @@ function App() {
       <hgroup>
         <h2>Registro de Asistencia</h2>
         <h3>{fecha}</h3>
-        <p>{user.displayName}</p> <button onClick={salir} >Salir</button>
+        <div className='grid'>
+          <div>{user.displayName} <img src="./src/public/exit.png" alt="Salir" onClick={salir} width={30} /></div>
+          <div></div>           
+        </div>
+        
       </hgroup>
       <RegistrarBtn user={user} />
-      <MostrarDatos />
+      <MostrarDatos user={user} />
     </>
   )
 

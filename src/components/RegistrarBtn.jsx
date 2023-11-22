@@ -13,7 +13,7 @@ var notyf = new Notyf(
         }
     });
 
-export default function RegistrarBtn({user}){
+export default function RegistrarBtn({ user }) {
 
     const DateTime = new Date()
 
@@ -21,58 +21,59 @@ export default function RegistrarBtn({user}){
     const [regOK, setRegOK] = useState(false)
 
     let year = DateTime.getFullYear()
-    let month = (DateTime.getMonth()+1) < 10 ? '0'+(DateTime.getMonth()+1) : (DateTime.getMonth()+1)
-    let day = DateTime.getDate() < 10 ? '0'+DateTime.getDate() : DateTime.getDate()
-    // const date = '2023-07-06'
-    const date = year + '-' + month + '-' + day 
+    let month = (DateTime.getMonth() + 1) < 10 ? '0' + (DateTime.getMonth() + 1) : (DateTime.getMonth() + 1)
+    let day = DateTime.getDate() < 10 ? '0' + DateTime.getDate() : DateTime.getDate()
+    const date = '2023-11-23'
+    // const date = year + '-' + month + '-' + day
 
-    const hour = DateTime.getHours()
-    const min = DateTime.getMinutes()
-    // const hour = 8
-    // const min = 30
-    const time = hour +':'+ min
+    // const hour = DateTime.getHours()
+    // const min = DateTime.getMinutes()
+    const hour = 18
+    const min = 35
+    const time = hour + ':' + min
 
-    const checkIn = (e)=>{
+    const checkIn = (e) => {
         e.preventDefault()
         const setReg = {
             numReg,
             date,
             in: time,
-            user: user.displayName
+            user: user.email
         }
         numReg > 0 ? addRegistro(setReg) : notyf.error('Debe introducir un número de registro')
         setRegOK(true)
     }
 
-    const CheckOut = (e)=>{
+    const CheckOut = (e) => {
         e.preventDefault()
         const setReg = {
             numReg,
             date,
             out: time,
-            user: user.displayName
+            user: user.email
         }
-        numReg > 0 ? updateRegistro(setReg) : notyf.error('Debe introducir un número de registro') 
+    
+        numReg > 0 ? updateRegistro(setReg) : notyf.error('Debe introducir un número de registro')
         setRegOK(true)
     }
 
-    if((hour == 7 && (min >= 30 && min <= 59)) || (hour == 8 && (min >= 0 && min <= 30)) ){
+    if ((hour == 7 && (min >= 30 && min <= 59)) || (hour == 8 && (min >= 0 && min <= 30))) {
         return (
             <form onSubmit={checkIn}>
-                <input autoFocus type="number" name="number" onChange={e=>setNumReg(e.target.value)} placeholder="Número de registro?"/>
-                <button type="submit">Registrar Entrada</button>
-            </form>
-        )       
-    }
-
-    if((hour ==15 || hour ==16) && (min >= 30 && min <= 59)){
-        return (
-            <form onSubmit={CheckOut}>
-                <input autoFocus type="number" name="number" onChange={e=>setNumReg(e.target.value)} placeholder="Número de registro?"/>
-                <button type="submit">Registrar Salida</button>
+                <input autoFocus type="number" name="number" onChange={e => setNumReg(e.target.value)} placeholder="Número de registro?" />
+                <button type="submit"> { regOK ? 'Ya registró su entrada' : 'Registrar Entrada' } </button>
             </form>
         )
     }
 
-    return regOK ? <button type="button" disabled>Registro realizado</button> : <button type="button" disabled>Espere su horario de Registro</button>
+    if ((hour == 15 || hour == 16) && (min >= 30 && min <= 59)) {
+        return (
+            <form onSubmit={CheckOut}>
+                <input autoFocus type="number" name="number" onChange={e => setNumReg(e.target.value)} placeholder="Número de registro?" />
+                <button type="submit" > {regOK ? 'Ya registró su salida' : 'Registrar Salida' } </button>
+            </form>
+        )
+    }
+
+    return <button type="button" disabled>Espere su horario de Registro</button>
 }

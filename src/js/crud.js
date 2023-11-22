@@ -9,7 +9,7 @@ const coleccion = 'asistencias'
 
 // Notificaciones
 var notyf = new Notyf(
-    {        
+    {
         position: {
             x: 'right',
             y: 'top'
@@ -17,9 +17,9 @@ var notyf = new Notyf(
         types: [{
             type: 'warning',
             background: 'orange',
-            duration:3000,
+            duration: 3000,
             dismissible: true
-        }]      
+        }]
     })
 
 const addRegistro = async (setReg) => {
@@ -33,7 +33,7 @@ const addRegistro = async (setReg) => {
             notyf.open({
                 type: 'warning',
                 message: 'Su entrada <strong>ya</strong> se encuentra registrada!'
-              })                
+            })
             return
         }
     })
@@ -64,21 +64,24 @@ const readRegistro = async () => {
 const updateRegistro = async (setReg) => {
 
     let change = null
-    let existe  = false
+    let existe = false
     const info = await readRegistro() // Consultamos todos los registros
 
     info.map(el => {
         if (el.date == setReg.date) {
             change = el.id  // Busca si ya se encuentra un registro con la misma fecha
-        } 
-        if(el.date == setReg.date && el.out) {
+        }
+        if (el.date == setReg.date && el.out) {
             existe = true
         }
     })
 
-    if(existe){
-        notyf.warning('Ya esta registrada tu salida!')
-            return 
+    if (existe) {
+        notyf.open({
+            type: 'warning',
+            message: 'Su <strong>salida</strong> ya se encuentra registrada!'
+        })
+        return
     }
 
     if (change) {  // Si encontro un registro con la misma fecha guarda la hora de salida
@@ -89,7 +92,7 @@ const updateRegistro = async (setReg) => {
         } catch (error) {
             notyf.error(error)
         }
-    }else{ //Si no registro entrada, registra la salida omitiendo la entrada
+    } else { //Si no registro entrada, registra la salida omitiendo la entrada
         try {
             const docRef = await addDoc(collection(db, coleccion), setReg)
             notyf.success('Se registró tu salida exitosamente')

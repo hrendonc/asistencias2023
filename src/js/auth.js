@@ -43,7 +43,8 @@ const registraUsuario = async (email, pass) => {
         .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
-            console.log(errorCode, errorMessage)
+            // console.log(errorCode, errorMessage)
+            notyf.error(errorMessage)
             // ..
         });
 }
@@ -59,7 +60,7 @@ await signInWithEmailAndPassword(auth, email, pass)
     .catch((error) => {
         const errorCode = error.code;
         const errorMessage = error.message;
-        console.log(errorCode, errorMessage)
+        notyf.error(errorMessage)
     })
 }
 
