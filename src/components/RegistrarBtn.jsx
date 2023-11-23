@@ -23,13 +23,13 @@ export default function RegistrarBtn({ user }) {
     let year = DateTime.getFullYear()
     let month = (DateTime.getMonth() + 1) < 10 ? '0' + (DateTime.getMonth() + 1) : (DateTime.getMonth() + 1)
     let day = DateTime.getDate() < 10 ? '0' + DateTime.getDate() : DateTime.getDate()
-    const date = '2023-11-23'
-    // const date = year + '-' + month + '-' + day
+    // const date = '2023-11-23'
+    const date = year + '-' + month + '-' + day
 
-    // const hour = DateTime.getHours()
-    // const min = DateTime.getMinutes()
-    const hour = 18
-    const min = 35
+    const hour = DateTime.getHours()
+    const min = DateTime.getMinutes()
+    // const hour = 8
+    // const min = 15
     const time = hour + ':' + min
 
     const checkIn = (e) => {
@@ -41,6 +41,7 @@ export default function RegistrarBtn({ user }) {
             user: user.email
         }
         numReg > 0 ? addRegistro(setReg) : notyf.error('Debe introducir un número de registro')
+        setNumReg('')
         setRegOK(true)
     }
 
@@ -54,6 +55,7 @@ export default function RegistrarBtn({ user }) {
         }
     
         numReg > 0 ? updateRegistro(setReg) : notyf.error('Debe introducir un número de registro')
+        setNumReg('')
         setRegOK(true)
     }
 
