@@ -1,5 +1,7 @@
-import { useState } from "react"
+// import { useState } from "react"
 import { registroGoogleRedirect, registroGooglePopup, registraUsuario, accesoUsuario } from '../js/auth'
+import { Button } from 'antd'
+import { GoogleOutlined } from '@ant-design/icons'
 
 function Auth() {
     // const [email, setEmail] = useState('')
@@ -14,8 +16,8 @@ function Auth() {
             <input type="button" onClick={() => accesoUsuario(email, pass)} value="Iniciar Sesión" />
             <input type="button" onClick={() => registraUsuario(email, pass)} value="Registrar" />
             <button onClick={() => registroGoogleRedirect()} >Entrar con google Redirect</button> */}
-            <h3>Control de Registros de Asistencia</h3>
-            <button onClick={() => registroGooglePopup()} >Acceder con cuenta de Google</button>
+            <h3>Control de Registro de Asistencias</h3>
+            <Button onClick={() => registroGooglePopup()} type='primary' size='large' shape='round' icon={<GoogleOutlined /> } >Acceder con cuenta de Google</Button>
         </>
     )
 }

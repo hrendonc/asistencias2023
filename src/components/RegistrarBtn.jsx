@@ -60,7 +60,7 @@ export default function RegistrarBtn({ user }) {
         setRegOK(true)
     }
 
-    if ((hour == 7 && (min >= 30 && min <= 59)) || (hour == 8 && (min >= 0 && min <= 30))) {
+    if ((hour == 7 && (min >= 30 && min <= 59)) || (hour == 9 && (min >= 0 && min <= 30))) {
         return (
             <form onSubmit={checkIn}>
                 <input autoFocus type="number" name="number" onChange={e => setNumReg(e.target.value)} placeholder="Número de registro?" />
