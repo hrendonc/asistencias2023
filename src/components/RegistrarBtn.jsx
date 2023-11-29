@@ -27,9 +27,10 @@ export default function RegistrarBtn({ user }) {
     const date = year + '-' + month + '-' + day
 
     const hour = DateTime.getHours()
-    const min = DateTime.getMinutes()
+    const min = DateTime.getMinutes()-2
     // const hour = 8
     // const min = 15
+
     const time = hour + ':' + min
 
     const checkIn = (e) => {
@@ -41,7 +42,7 @@ export default function RegistrarBtn({ user }) {
             user: user.email
         }
         numReg > 0 ? addRegistro(setReg) : notyf.error('Debe introducir un número de registro')
-        setNumReg('')
+        e.target.reset()
         setRegOK(true)
     }
 
@@ -55,7 +56,7 @@ export default function RegistrarBtn({ user }) {
         }
     
         numReg > 0 ? updateRegistro(setReg) : notyf.error('Debe introducir un número de registro')
-        setNumReg('')
+        e.target.reset()
         setRegOK(true)
     }
 

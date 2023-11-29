@@ -28,7 +28,7 @@ const addRegistro = async (setReg) => {
     const info = await readRegistro() // Consultamos todos los registros
 
     info.map(el => {
-        if (el.date == setReg.date) {  // Busca si ya se encuentra un registro con la misma fecha
+        if (el.date == setReg.date && el.user == setReg.user) {  // Busca si ya se encuentra un registro con la misma fecha y usuario
             exit = true
             notyf.open({
                 type: 'warning',
@@ -68,8 +68,8 @@ const updateRegistro = async (setReg) => {
     const info = await readRegistro() // Consultamos todos los registros
 
     info.map(el => {
-        if (el.date == setReg.date) {
-            change = el.id  // Busca si ya se encuentra un registro con la misma fecha
+        if (el.date == setReg.date && el.user == setReg.user) {// Busca si ya se encuentra un registro con la misma fecha
+            change = el.id  
         }
         if (el.date == setReg.date && el.out) {
             existe = true
