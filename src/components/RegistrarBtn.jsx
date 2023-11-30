@@ -26,10 +26,10 @@ export default function RegistrarBtn({ user }) {
     // const date = '2023-11-23'
     const date = year + '-' + month + '-' + day
 
-    const hour = DateTime.getHours()
-    const min = DateTime.getMinutes()-2
-    // const hour = 8
-    // const min = 15
+    // const hour = DateTime.getHours()
+    // const min = DateTime.getMinutes()-2
+    const hour = 8
+    const min = 8
 
     const time = hour + ':' + min
 
@@ -60,7 +60,7 @@ export default function RegistrarBtn({ user }) {
         setRegOK(true)
     }
 
-    if ((hour == 7 && (min >= 30 && min <= 59)) || (hour == 9 && (min >= 0 && min <= 30))) {
+    if ((hour == 7 && (min >= 30 && min <= 59)) || (hour == 8 && (min >= 0 && min <= 59)) || (hour == 9 && (min >= 0 && min <= 30)) ) {
         return (
             <form onSubmit={checkIn}>
                 <input autoFocus type="number" name="number" onChange={e => setNumReg(e.target.value)} placeholder="Número de registro?" />
@@ -69,7 +69,7 @@ export default function RegistrarBtn({ user }) {
         )
     }
 
-    if ((hour == 15 || hour == 16) && (min >= 30 && min <= 59)) {
+    if ((hour == 15 || hour == 16) && (min >= 0 && min <= 59)) {
         return (
             <form onSubmit={CheckOut}>
                 <input autoFocus type="number" name="number" onChange={e => setNumReg(e.target.value)} placeholder="Número de registro?" />
