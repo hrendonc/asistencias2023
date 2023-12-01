@@ -26,10 +26,10 @@ export default function RegistrarBtn({ user }) {
     // const date = '2023-11-23'
     const date = year + '-' + month + '-' + day
 
-    // const hour = DateTime.getHours()
-    // const min = DateTime.getMinutes()-2
-    const hour = 8
-    const min = 8
+    const hour = DateTime.getHours()
+    const min = DateTime.getMinutes()-2
+    // const hour = 8
+    // const min = 8
 
     const time = hour + ':' + min
 
